@@ -1,0 +1,29 @@
+{
+  "transcripcion_completa": "el motor está botando aceite por el retén del cárter no es grave pero si no lo tapamos pronto va a empezar a gotear feo las correas de accesorios ya están todas agrietadas y resecas esta hay que cambiarlas ya antes de que revienten refrigerante está abajo y sucio como un trapo de talleres huele a que nunca lo han hecho mantenimiento el cliente se queja que tironea al acelerar seguro son las bujías ya quemadas y o el cuerpo de mariposa tapado de mugre para rematar la suspensión delantera hace ruido feo cuando pasa los valles las terminales ya están bailando el escape también tiene un hoyito por donde está silbando eso hay que soldarlo nos vibran como si se pisase fuerte los discos están alardeados y hay que rectificarlos",
+  "imagenes": [
+    {
+      "timestamp": 1750688039740,
+      "url": "https://sw1-proy-2025.s3.amazonaws.com/diagnosticos/2025/06/23/diag_39_img_001.jpg",
+      "posicion_en_texto": 237,
+      "descripcion_contexto": "de que revienten FOTO"
+    },
+    {
+      "timestamp": 1750688060491,
+      "url": "https://sw1-proy-2025.s3.amazonaws.com/diagnosticos/2025/06/23/diag_39_img_002.jpg",
+      "posicion_en_texto": 460,
+      "descripcion_contexto": "tapado de mugre FOTO"
+    },
+    {
+      "timestamp": 1750688079374,
+      "url": "https://sw1-proy-2025.s3.amazonaws.com/diagnosticos/2025/06/23/diag_39_img_003.jpg",
+      "posicion_en_texto": 647,
+      "descripcion_contexto": "hay que soldarlo FOTO"
+    }
+  ],
+  "metadatos": {
+    "fecha_inicio": "2025-06-23T10:15:01.842706",
+    "fecha_fin": "23/6/2025",
+    "mecanico_id": 39,
+    "cantidad_imagenes": 3
+  }
+}

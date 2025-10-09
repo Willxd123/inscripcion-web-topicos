@@ -1,0 +1,29 @@
+<!-- layouts.component.html -->
+<div class="min-h-screen bg-gray-50">
+  <app-navbar></app-navbar>
+
+  <div class="">
+    <!-- Main content area sin margen del sidebar -->
+    <main class="w-full">
+      <!-- Content wrapper -->
+      <div class="p-4 sm:p-6 lg:p-8">
+        <!-- Breadcrumb -->
+        <div class="mb-6">
+          <nav class="flex" aria-label="Breadcrumb">
+            <ol class="inline-flex items-center space-x-1 md:space-x-3">
+              <li class="inline-flex items-center">
+                <i class="fas fa-home text-gray-400 mr-2"></i>
+                <span class="text-sm font-medium text-gray-500">Inicio</span>
+              </li>
+            </ol>
+          </nav>
+        </div>
+
+        <!-- Router outlet -->
+        <div class="bg-white rounded-xl shadow-sm border border-gray-200 min-h-[calc(100vh-200px)]">
+          <router-outlet></router-outlet>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>

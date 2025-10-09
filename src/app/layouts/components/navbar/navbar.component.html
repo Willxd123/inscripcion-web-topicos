@@ -1,0 +1,114 @@
+<!-- navbar.component.html -->
+<nav class="fixed top-0 z-50 w-full bg-white border-b border-gray-200 shadow-sm">
+   <div class="px-3 py-3 lg:px-5 lg:pl-3">
+     <div class="flex items-center justify-between">
+       
+       <!-- Left section -->
+       <div class="flex items-center justify-start rtl:justify-end">
+         <!-- Mobile menu button -->
+         <button 
+           id="sidebar-toggle"
+           type="button"
+           class="inline-flex items-center p-2 text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-200 transition-all duration-200">
+           <span class="sr-only">Abrir menú</span>
+           <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
+             <path clip-rule="evenodd" fill-rule="evenodd" d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z"></path>
+           </svg>
+         </button>
+         
+         <!-- Logo section -->
+         <div class="flex items-center ms-2 md:me-24">
+           <div class="flex items-center space-x-3">
+             <!-- Logo icon -->
+             <div class="w-10 h-10 bg-gradient-to-br from-blue-600 to-blue-700 rounded-lg flex items-center justify-center shadow-sm">
+               <i class="fas fa-car text-white text-lg"></i>
+             </div>
+             <!-- Brand text -->
+             <div class="hidden sm:block">
+               <h1 class="text-xl font-bold text-gray-900">IMAV Motors</h1>
+               <p class="text-xs text-gray-500 -mt-1">Sistema de Diagnósticos</p>
+             </div>
+           </div>
+         </div>
+       </div>
+       
+       <!-- Right section -->
+       <div class="flex items-center space-x-3">
+         <!-- System status indicator -->
+         <div class="hidden md:flex items-center space-x-2 px-3 py-1.5 bg-green-50 rounded-full">
+           <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+           <span class="text-xs font-medium text-green-700">Sistema Activo</span>
+         </div>
+         
+        
+         
+         <!-- User menu -->
+         <div class="relative">
+           <button 
+             id="user-menu-button" 
+             class="flex items-center space-x-3 p-2 rounded-lg hover:bg-gray-50 transition-all duration-200 group">
+             
+             <!-- User avatar -->
+             <div class="w-8 h-8 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center shadow-sm group-hover:shadow-md transition-shadow duration-200">
+               <i class="fas fa-user text-white text-sm"></i>
+             </div>
+             
+             <!-- User info (hidden on mobile) -->
+             <div class="hidden md:block text-left">
+               <p class="text-sm font-medium text-gray-900">Admin IMAV</p>
+               <p class="text-xs text-gray-500">Administrador</p>
+             </div>
+             
+             <!-- Dropdown arrow -->
+             <i class="fas fa-chevron-down text-gray-400 text-xs group-hover:text-gray-600 transition-colors duration-200"></i>
+           </button>
+           
+           <!-- Dropdown menu -->
+           <div 
+             id="dropdown-user" 
+             class="absolute right-0 mt-2 w-56 bg-white divide-y divide-gray-100 rounded-lg shadow-lg border border-gray-200 z-50 hidden transform opacity-0 scale-95 transition-all duration-200">
+             
+             <!-- User info section -->
+             <div class="px-4 py-3 bg-gray-50 rounded-t-lg">
+               <p class="text-sm font-medium text-gray-900">Admin IMAV</p>
+               <p class="text-sm text-gray-500 truncate">adminmavmotors.com</p>
+             </div>
+             
+             <!-- Menu options -->
+             <ul class="py-2">
+               <li>
+                 <a href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-700 transition-colors duration-200">
+                   <i class="fas fa-user-circle mr-3 text-gray-400"></i>
+                   Mi Perfil
+                 </a>
+               </li>
+               <li>
+                 <a href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-700 transition-colors duration-200">
+                   <i class="fas fa-cog mr-3 text-gray-400"></i>
+                   Configuración
+                 </a>
+               </li>
+               <li>
+                 <a href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-700 transition-colors duration-200">
+                   <i class="fas fa-question-circle mr-3 text-gray-400"></i>
+                   Ayuda
+                 </a>
+               </li>
+             </ul>
+             
+             <!-- Logout section -->
+             <div class="py-2">
+               <a 
+                 href="#" 
+                 (click)="logout()" 
+                 class="flex items-center px-4 py-2 text-sm text-red-600 hover:bg-red-50 transition-colors duration-200">
+                 <i class="fas fa-sign-out-alt mr-3"></i>
+                 Cerrar Sesión
+               </a>
+             </div>
+           </div>
+         </div>
+       </div>
+     </div>
+   </div>
+ </nav>

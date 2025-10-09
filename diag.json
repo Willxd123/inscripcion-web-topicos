@@ -1,0 +1,64 @@
+{
+  "resumen_diagnostico": "El diagnóstico realizado revela múltiples incidencias que afectan tanto la seguridad como el rendimiento del vehículo. A continuación, se detallan los hallazgos, las recomendaciones técnicas correspondientes, las evidencias visuales y el nivel de prioridad para su atención.",
+  "detalles": [
+    {
+      "problema": "Fuga de aceite por retén del cárter",
+      "descripcion": "Se observó pérdida de aceite por el retén del cárter. Aunque no es una fuga severa aún, puede escalar a una avería mayor si no se atiende a tiempo.",
+      "recomendacion": "Sustituir el retén y verificar el nivel de aceite tras la reparación.",
+      "prioridad": "Media",
+      "evidencia": null
+    },
+    {
+      "problema": "Correas de accesorios desgastadas",
+      "descripcion": "Las correas presentan grietas visibles y signos de resequedad, lo que representa un riesgo de rotura inminente y afectaría varios componentes críticos del motor.",
+      "recomendacion": "Cambiar inmediatamente todas las correas de accesorios.",
+      "prioridad": "Alta",
+      "evidencia": {
+        "url": "https://sw1-proy-2025.s3.amazonaws.com/diagnosticos/2025/06/23/diag_39_img_001.jpg",
+        "descripcion_contexto": "de que revienten FOTO"
+      }
+    },
+    {
+      "problema": "Refrigerante sucio y en bajo nivel",
+      "descripcion": "El sistema de refrigeración presenta líquido sucio y escaso, lo cual compromete la regulación térmica del motor.",
+      "recomendacion": "Reemplazar completamente el refrigerante y revisar el sistema por posibles fugas.",
+      "prioridad": "Alta",
+      "evidencia": null
+    },
+    {
+      "problema": "Tironeo al acelerar",
+      "descripcion": "El cliente menciona tirones al acelerar. Se sospecha de bujías desgastadas o cuerpo de mariposa con exceso de carbonilla.",
+      "recomendacion": "Revisar y cambiar bujías si es necesario, y limpiar el cuerpo de mariposa.",
+      "prioridad": "Media",
+      "evidencia": {
+        "url": "https://sw1-proy-2025.s3.amazonaws.com/diagnosticos/2025/06/23/diag_39_img_002.jpg",
+        "descripcion_contexto": "tapado de mugre FOTO"
+      }
+    },
+    {
+      "problema": "Ruido en suspensión delantera",
+      "descripcion": "Se detecta ruido irregular al pasar por baches. Las terminales de dirección tienen holgura significativa.",
+      "recomendacion": "Sustituir terminales delanteras y realizar alineación.",
+      "prioridad": "Alta",
+      "evidencia": null
+    },
+    {
+      "problema": "Escape perforado",
+      "descripcion": "Existe un pequeño orificio en el escape que provoca silbido durante la aceleración.",
+      "recomendacion": "Realizar soldadura o reemplazar sección dañada del escape.",
+      "prioridad": "Baja",
+      "evidencia": {
+        "url": "https://sw1-proy-2025.s3.amazonaws.com/diagnosticos/2025/06/23/diag_39_img_003.jpg",
+        "descripcion_contexto": "hay que soldarlo FOTO"
+      }
+    },
+    {
+      "problema": "Vibración al frenar",
+      "descripcion": "Se perciben vibraciones al accionar los frenos, lo cual indica posible deformación de los discos.",
+      "recomendacion": "Rectificar o cambiar discos de freno, según desgaste.",
+      "prioridad": "Alta",
+      "evidencia": null
+    }
+  ],
+  "recomendacion_general": "Se recomienda atender primero las incidencias marcadas con prioridad Alta, ya que pueden comprometer la seguridad o causar daños severos si no se corrigen de inmediato. El tiempo estimado para todas las reparaciones es de 2 a 3 días laborales."
+}

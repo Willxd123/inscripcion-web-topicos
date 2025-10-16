@@ -99,12 +99,75 @@ export class GruposComponent implements OnInit {
   }
 
   gruposConCupo(grupos: Grupo[]): Grupo[] {
-    return grupos.filter(grupo => grupo.cupo > 0);
+    return grupos.filter(grupo => grupo.cupo >= 0);
   }
 
   volverAMaterias(): void {
     this.router.navigate(['/materias']);
   }
+  /* continuarAInscripcion(): void {
+    try {
+      // Validación 1: Al menos un grupo seleccionado
+      if (!this.tieneAlMenosUnaSeleccionada()) {
+        throw new Error('NINGUN_GRUPO_SELECCIONADO: Debes seleccionar al menos un grupo');
+      }
+
+      // Filtrar materias con grupo seleccionado
+      const materiasConGrupo = this.materiasConGrupos()
+        .filter(mc => mc.grupoSeleccionado !== null);
+
+      // Validación 2: Verificar cupos disponibles
+      const gruposSeleccionados: GrupoSeleccionado[] = materiasConGrupo.map(mc => {
+        const grupoSeleccionado = mc.grupos.find(g => g.id === mc.grupoSeleccionado);
+        
+        if (!grupoSeleccionado) {
+          throw new Error(`GRUPO_NO_ENCONTRADO: No se encontró el grupo para ${mc.materia.nombre}`);
+        }
+
+        // VERIFICAR CUPOS
+        if (grupoSeleccionado.cupo <= 0) {
+          throw new Error(
+            `SIN_CUPOS: El grupo ${grupoSeleccionado.sigla} de ${mc.materia.nombre} no tiene cupos disponibles (${grupoSeleccionado.cupo} cupos)`
+          );
+        }
+
+        return {
+          materiaId: mc.materia.id,
+          materiaNombre: mc.materia.nombre,
+          materiaSigla: mc.materia.sigla,
+          grupoId: grupoSeleccionado.id,
+          grupoSigla: grupoSeleccionado.sigla,
+          docenteId: grupoSeleccionado.docenteId
+        };
+      });
+
+      // Todo OK, guardar y continuar
+      localStorage.setItem('gruposSeleccionados', JSON.stringify(gruposSeleccionados));
+      this.router.navigate(['/inscripcion']);
+
+    } catch (exception: any) {
+      // Manejar excepciones según tipo
+      const mensaje = exception.message || '';
+
+      if (mensaje.includes('SIN_CUPOS')) {
+        const errorLimpio = mensaje.replace('SIN_CUPOS: ', '');
+        alert(`⚠️ Sin cupos disponibles\n\n${errorLimpio}\n\nPor favor, selecciona otro grupo.`);
+        console.warn('[GRUPOS] Intento sin cupos:', mensaje);
+        
+      } else if (mensaje.includes('NINGUN_GRUPO_SELECCIONADO')) {
+        alert('⚠️ Debes seleccionar al menos un grupo para continuar');
+        
+      } else if (mensaje.includes('GRUPO_NO_ENCONTRADO')) {
+        alert(`❌ ${mensaje.replace('GRUPO_NO_ENCONTRADO: ', '')}`);
+        console.error('[GRUPOS] Error:', exception);
+        
+      } else {
+        alert(`❌ Error inesperado: ${mensaje}`);
+        console.error('[GRUPOS] Error inesperado:', exception);
+      }
+    }
+  } */
+
 
   continuarAInscripcion(): void {
     if (!this.tieneAlMenosUnaSeleccionada()) {

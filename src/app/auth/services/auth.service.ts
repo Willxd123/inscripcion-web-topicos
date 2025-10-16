@@ -1,3 +1,4 @@
+import { environment } from './../../environment';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
@@ -6,21 +7,21 @@ import { tap, catchError } from 'rxjs/operators';
 
 interface LoginResponse {
   token: string;
-  correo: string;
+  registro: string;
 }
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  apiUrl: string = 'https://imav-motors-back.onrender.com/api'; // Base de tu API
+  
   tokenKey = 'authToken';
-
+  private baseUrl = environment.apiUrl;
   constructor(private http: HttpClient, private router: Router) {}
 
-  login(correo: string, clave: string): Observable<LoginResponse> {
+  login(registro: string, codigo: string): Observable<LoginResponse> {
     return this.http
-      .post<LoginResponse>(`${this.apiUrl}/auth/login`, { correo, clave })
+      .post<LoginResponse>(`${this.baseUrl}/usuarios/auth/login`, { registro, codigo })
       .pipe(
         tap((response) => {
           if (response.token) {

@@ -1,81 +1,91 @@
-// navbar.component.ts
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { AuthService } from '../../../auth/services/auth.service';
-import { Router } from '@angular/router';
+import { Component, OnInit, OnDestroy, inject, signal } from '@angular/core';
+import { Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { interval } from 'rxjs';
+
+interface SolicitudGuardada {
+  uuid: string;
+  fecha: string;
+  tipo: string;
+}
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css'
 })
 export class NavbarComponent implements OnInit, OnDestroy {
-  isUserMenuOpen = false;
+  private readonly router = inject(Router);
   
-  constructor(
-    private authService: AuthService,
-    private router: Router
-  ) {}
-
+  menuUsuarioAbierto = signal(false);
+  menuHistorialAbierto = signal(false);
+  solicitudesGuardadas = signal<SolicitudGuardada[]>([]);
+  
+  private intervaloActualizacion?: any;
+  
   ngOnInit(): void {
-    this.initializeEventListeners();
+    this.inicializarEventListeners();
+    this.cargarSolicitudesGuardadas();
+    this.iniciarActualizacionAutomatica();
   }
 
   ngOnDestroy(): void {
-    this.removeEventListeners();
+    this.removerEventListeners();
+    if (this.intervaloActualizacion) {
+      clearInterval(this.intervaloActualizacion);
+    }
   }
 
-  private initializeEventListeners(): void {
-    // Event listener para el botón del menú de usuario
-    document.addEventListener('click', this.handleDocumentClick.bind(this));
+  private inicializarEventListeners(): void {
+    document.addEventListener('click', this.manejarClickDocumento.bind(this));
     
-    // Event listener para el toggle del sidebar
-    const sidebarToggle = document.getElementById('sidebar-toggle');
-    if (sidebarToggle) {
-      sidebarToggle.addEventListener('click', this.toggleSidebar.bind(this));
+    const botonMenuUsuario = document.getElementById('user-menu-button');
+    if (botonMenuUsuario) {
+      botonMenuUsuario.addEventListener('click', this.alternarMenuUsuario.bind(this));
     }
 
-    // Event listener para el menú de usuario
-    const userMenuButton = document.getElementById('user-menu-button');
-    if (userMenuButton) {
-      userMenuButton.addEventListener('click', this.toggleUserMenu.bind(this));
+    const botonHistorial = document.getElementById('historial-button');
+    if (botonHistorial) {
+      botonHistorial.addEventListener('click', this.alternarMenuHistorial.bind(this));
     }
   }
 
-  private removeEventListeners(): void {
-    document.removeEventListener('click', this.handleDocumentClick.bind(this));
+  private removerEventListeners(): void {
+    document.removeEventListener('click', this.manejarClickDocumento.bind(this));
   }
 
-  private handleDocumentClick(event: Event): void {
-    const target = event.target as HTMLElement;
-    const userMenuButton = document.getElementById('user-menu-button');
-    const userDropdown = document.getElementById('dropdown-user');
+  private manejarClickDocumento(event: Event): void {
+    const objetivo = event.target as HTMLElement;
     
-    if (userMenuButton && userDropdown && 
-        !userMenuButton.contains(target) && 
-        !userDropdown.contains(target)) {
-      this.closeUserMenu();
-    }
-  }
-
-  private toggleSidebar(): void {
-    const sidebar = document.getElementById('logo-sidebar');
-    const overlay = document.getElementById('sidebar-overlay');
+    // Cerrar menú de usuario si se hace click fuera
+    const botonMenuUsuario = document.getElementById('user-menu-button');
+    const dropdownUsuario = document.getElementById('dropdown-user');
     
-    if (sidebar && overlay) {
-      sidebar.classList.toggle('-translate-x-full');
-      overlay.classList.toggle('hidden');
+    if (botonMenuUsuario && dropdownUsuario && 
+        !botonMenuUsuario.contains(objetivo) && 
+        !dropdownUsuario.contains(objetivo)) {
+      this.cerrarMenuUsuario();
+    }
+
+    // Cerrar menú de historial si se hace click fuera
+    const botonHistorial = document.getElementById('historial-button');
+    const dropdownHistorial = document.getElementById('dropdown-historial');
+    
+    if (botonHistorial && dropdownHistorial && 
+        !botonHistorial.contains(objetivo) && 
+        !dropdownHistorial.contains(objetivo)) {
+      this.cerrarMenuHistorial();
     }
   }
 
-  private toggleUserMenu(): void {
-    this.isUserMenuOpen = !this.isUserMenuOpen;
+  private alternarMenuUsuario(): void {
+    this.menuUsuarioAbierto.set(!this.menuUsuarioAbierto());
     const dropdown = document.getElementById('dropdown-user');
     
     if (dropdown) {
-      if (this.isUserMenuOpen) {
+      if (this.menuUsuarioAbierto()) {
         dropdown.classList.remove('hidden', 'opacity-0', 'scale-95');
         dropdown.classList.add('opacity-100', 'scale-100');
       } else {
@@ -88,8 +98,26 @@ export class NavbarComponent implements OnInit, OnDestroy {
     }
   }
 
-  private closeUserMenu(): void {
-    this.isUserMenuOpen = false;
+  private alternarMenuHistorial(): void {
+    this.menuHistorialAbierto.set(!this.menuHistorialAbierto());
+    const dropdown = document.getElementById('dropdown-historial');
+    
+    if (dropdown) {
+      if (this.menuHistorialAbierto()) {
+        dropdown.classList.remove('hidden', 'opacity-0', 'scale-95');
+        dropdown.classList.add('opacity-100', 'scale-100');
+      } else {
+        dropdown.classList.add('opacity-0', 'scale-95');
+        setTimeout(() => {
+          dropdown.classList.add('hidden');
+          dropdown.classList.remove('opacity-100', 'scale-100');
+        }, 200);
+      }
+    }
+  }
+
+  private cerrarMenuUsuario(): void {
+    this.menuUsuarioAbierto.set(false);
     const dropdown = document.getElementById('dropdown-user');
     
     if (dropdown) {
@@ -101,8 +129,53 @@ export class NavbarComponent implements OnInit, OnDestroy {
     }
   }
 
-  logout(): void {
-    this.closeUserMenu();
-    this.authService.logout();
+  private cerrarMenuHistorial(): void {
+    this.menuHistorialAbierto.set(false);
+    const dropdown = document.getElementById('dropdown-historial');
+    
+    if (dropdown) {
+      dropdown.classList.add('opacity-0', 'scale-95');
+      setTimeout(() => {
+        dropdown.classList.add('hidden');
+        dropdown.classList.remove('opacity-100', 'scale-100');
+      }, 200);
+    }
+  }
+
+  private iniciarActualizacionAutomatica(): void {
+    // Actualizar el historial cada 5 segundos para reflejar nuevas solicitudes
+    this.intervaloActualizacion = setInterval(() => {
+      this.cargarSolicitudesGuardadas();
+    }, 5000);
+  }
+
+  cargarSolicitudesGuardadas(): void {
+    const solicitudesJson = localStorage.getItem('solicitudesInscripcion');
+    if (solicitudesJson) {
+      const solicitudes = JSON.parse(solicitudesJson);
+      this.solicitudesGuardadas.set(solicitudes);
+      console.log('Solicitudes cargadas en navbar:', solicitudes.length);
+    } else {
+      console.log('No hay solicitudes en localStorage');
+    }
+  }
+
+  verSolicitud(uuid: string): void {
+    this.cerrarMenuHistorial();
+    this.router.navigate(['/inscripcion/estado', uuid]);
+  }
+
+  limpiarHistorial(): void {
+    if (confirm('¿Estás seguro de que deseas limpiar todo el historial?')) {
+      localStorage.removeItem('solicitudesInscripcion');
+      this.solicitudesGuardadas.set([]);
+      this.cerrarMenuHistorial();
+    }
+  }
+
+  cerrarSesion(): void {
+    this.cerrarMenuUsuario();
+    localStorage.clear();
+    this.router.navigate(['/login']);
   }
 }

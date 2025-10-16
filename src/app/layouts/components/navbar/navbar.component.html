@@ -1,114 +1,150 @@
-<!-- navbar.component.html -->
 <nav class="fixed top-0 z-50 w-full bg-white border-b border-gray-200 shadow-sm">
-   <div class="px-3 py-3 lg:px-5 lg:pl-3">
-     <div class="flex items-center justify-between">
-       
-       <!-- Left section -->
-       <div class="flex items-center justify-start rtl:justify-end">
-         <!-- Mobile menu button -->
-         <button 
-           id="sidebar-toggle"
-           type="button"
-           class="inline-flex items-center p-2 text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-200 transition-all duration-200">
-           <span class="sr-only">Abrir menú</span>
-           <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
-             <path clip-rule="evenodd" fill-rule="evenodd" d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z"></path>
-           </svg>
-         </button>
-         
-         <!-- Logo section -->
-         <div class="flex items-center ms-2 md:me-24">
-           <div class="flex items-center space-x-3">
-             <!-- Logo icon -->
-             <div class="w-10 h-10 bg-gradient-to-br from-blue-600 to-blue-700 rounded-lg flex items-center justify-center shadow-sm">
-               <i class="fas fa-car text-white text-lg"></i>
-             </div>
-             <!-- Brand text -->
-             <div class="hidden sm:block">
-               <h1 class="text-xl font-bold text-gray-900">IMAV Motors</h1>
-               <p class="text-xs text-gray-500 -mt-1">Sistema de Diagnósticos</p>
-             </div>
-           </div>
-         </div>
-       </div>
-       
-       <!-- Right section -->
-       <div class="flex items-center space-x-3">
-         <!-- System status indicator -->
-         <div class="hidden md:flex items-center space-x-2 px-3 py-1.5 bg-green-50 rounded-full">
-           <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-           <span class="text-xs font-medium text-green-700">Sistema Activo</span>
-         </div>
-         
+  <div class="px-4 py-3 lg:px-6">
+    <div class="flex items-center justify-between">
+      
+      <!-- Left section - Logo y Título -->
+      <div class="flex items-center justify-start">
+        <!-- Logo y Brand -->
+        <a routerLink="/materias" class="flex items-center space-x-3">
+          <div class="w-9 h-9 bg-gradient-to-br from-blue-600 to-blue-700 rounded-lg flex items-center justify-center">
+            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+            </svg>
+          </div>
+          <div>
+            <h1 class="text-lg font-bold text-gray-900">Sistema Universitario</h1>
+            <p class="text-xs text-gray-500 -mt-0.5">Gestión de Inscripciones</p>
+          </div>
+        </a>
+      </div>
+      
+      <!-- Right section -->
+      <div class="flex items-center space-x-2">
         
-         
-         <!-- User menu -->
-         <div class="relative">
-           <button 
-             id="user-menu-button" 
-             class="flex items-center space-x-3 p-2 rounded-lg hover:bg-gray-50 transition-all duration-200 group">
-             
-             <!-- User avatar -->
-             <div class="w-8 h-8 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center shadow-sm group-hover:shadow-md transition-shadow duration-200">
-               <i class="fas fa-user text-white text-sm"></i>
-             </div>
-             
-             <!-- User info (hidden on mobile) -->
-             <div class="hidden md:block text-left">
-               <p class="text-sm font-medium text-gray-900">Admin IMAV</p>
-               <p class="text-xs text-gray-500">Administrador</p>
-             </div>
-             
-             <!-- Dropdown arrow -->
-             <i class="fas fa-chevron-down text-gray-400 text-xs group-hover:text-gray-600 transition-colors duration-200"></i>
-           </button>
-           
-           <!-- Dropdown menu -->
-           <div 
-             id="dropdown-user" 
-             class="absolute right-0 mt-2 w-56 bg-white divide-y divide-gray-100 rounded-lg shadow-lg border border-gray-200 z-50 hidden transform opacity-0 scale-95 transition-all duration-200">
-             
-             <!-- User info section -->
-             <div class="px-4 py-3 bg-gray-50 rounded-t-lg">
-               <p class="text-sm font-medium text-gray-900">Admin IMAV</p>
-               <p class="text-sm text-gray-500 truncate">adminmavmotors.com</p>
-             </div>
-             
-             <!-- Menu options -->
-             <ul class="py-2">
-               <li>
-                 <a href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-700 transition-colors duration-200">
-                   <i class="fas fa-user-circle mr-3 text-gray-400"></i>
-                   Mi Perfil
-                 </a>
-               </li>
-               <li>
-                 <a href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-700 transition-colors duration-200">
-                   <i class="fas fa-cog mr-3 text-gray-400"></i>
-                   Configuración
-                 </a>
-               </li>
-               <li>
-                 <a href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-700 transition-colors duration-200">
-                   <i class="fas fa-question-circle mr-3 text-gray-400"></i>
-                   Ayuda
-                 </a>
-               </li>
-             </ul>
-             
-             <!-- Logout section -->
-             <div class="py-2">
-               <a 
-                 href="#" 
-                 (click)="logout()" 
-                 class="flex items-center px-4 py-2 text-sm text-red-600 hover:bg-red-50 transition-colors duration-200">
-                 <i class="fas fa-sign-out-alt mr-3"></i>
-                 Cerrar Sesión
-               </a>
-             </div>
-           </div>
-         </div>
-       </div>
-     </div>
-   </div>
- </nav>
+        <!-- Botón de Historial de Solicitudes -->
+        <div class="relative">
+          <button 
+            id="historial-button"
+            class="flex items-center space-x-2 px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors duration-200">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <span class="hidden md:inline text-sm font-medium">Mis Solicitudes</span>
+            @if(solicitudesGuardadas().length > 0) {
+              <span class="ml-1 bg-blue-600 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">
+                {{ solicitudesGuardadas().length }}
+              </span>
+            }
+          </button>
+          
+          <!-- Dropdown de Historial -->
+          <div 
+            id="dropdown-historial" 
+            class="absolute right-0 mt-2 w-80 bg-white rounded-lg shadow-xl border border-gray-200 z-50 hidden transform opacity-0 scale-95 transition-all duration-200">
+            
+            <div class="px-4 py-3 bg-gray-50 rounded-t-lg border-b border-gray-200">
+              <h3 class="text-sm font-semibold text-gray-900">Historial de Solicitudes</h3>
+              <p class="text-xs text-gray-500">Tus últimas inscripciones</p>
+            </div>
+            
+            <div class="max-h-96 overflow-y-auto">
+              @if(solicitudesGuardadas().length === 0) {
+                <div class="px-4 py-8 text-center">
+                  <svg class="w-12 h-12 mx-auto text-gray-300 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                  </svg>
+                  <p class="text-sm text-gray-500">No hay solicitudes guardadas</p>
+                </div>
+              } @else {
+                <ul class="py-2">
+                  @for(solicitud of solicitudesGuardadas(); track solicitud.uuid) {
+                    <li>
+                      <button 
+                        (click)="verSolicitud(solicitud.uuid)"
+                        class="w-full px-4 py-3 text-left hover:bg-blue-50 transition-colors duration-200 border-b border-gray-100 last:border-0">
+                        <div class="flex items-start justify-between">
+                          <div class="flex-1">
+                            <p class="text-sm font-medium text-gray-900 mb-1">
+                              {{ solicitud.tipo }}
+                            </p>
+                            <p class="text-xs text-gray-500">
+                              {{ solicitud.fecha }}
+                            </p>
+                            <p class="text-xs text-gray-400 font-mono mt-1 truncate">
+                              ID: {{ solicitud.uuid.substring(0, 13) }}...
+                            </p>
+                          </div>
+                          <svg class="w-5 h-5 text-gray-400 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                          </svg>
+                        </div>
+                      </button>
+                    </li>
+                  }
+                </ul>
+                
+                <div class="px-4 py-3 bg-gray-50 border-t border-gray-200">
+                  <button 
+                    (click)="limpiarHistorial()"
+                    class="w-full text-sm text-red-600 hover:text-red-700 font-medium">
+                    Limpiar historial
+                  </button>
+                </div>
+              }
+            </div>
+          </div>
+        </div>
+        
+        <!-- User menu -->
+        <div class="relative">
+          <button 
+            id="user-menu-button" 
+            class="flex items-center space-x-2 p-2 rounded-lg hover:bg-gray-100 transition-all duration-200">
+            <div class="w-8 h-8 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center">
+              <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+              </svg>
+            </div>
+            <span class="hidden md:inline text-sm font-medium text-gray-700">Usuario</span>
+            <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          
+          <!-- Dropdown menu -->
+          <div 
+            id="dropdown-user" 
+            class="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-xl border border-gray-200 z-50 hidden transform opacity-0 scale-95 transition-all duration-200">
+            
+            <div class="px-4 py-3 bg-gray-50 rounded-t-lg border-b border-gray-200">
+              <p class="text-sm font-medium text-gray-900">Estudiante</p>
+              <p class="text-xs text-gray-500">ID: 12345</p>
+            </div>
+            
+            <ul class="py-2">
+              <li>
+                <a routerLink="/perfil" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 transition-colors">
+                  <svg class="w-4 h-4 mr-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                  </svg>
+                  Mi Perfil
+                </a>
+              </li>
+            </ul>
+            
+            <div class="py-2 border-t border-gray-200">
+              <button 
+                (click)="cerrarSesion()" 
+                class="w-full flex items-center px-4 py-2 text-sm text-red-600 hover:bg-red-50 transition-colors">
+                <svg class="w-4 h-4 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                </svg>
+                Cerrar Sesión
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>

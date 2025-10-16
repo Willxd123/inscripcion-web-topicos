@@ -31,7 +31,7 @@ export interface EstadoProcesamdo {
 // Respuesta cuando está procesado o con error
 export interface EstadoRespuesta {
   Solicitud: {
-    estado: 'procesando' | 'procesado' | 'error';
+    estado: 'procesando' | 'procesado' | 'error' | 'rechazado';
     datos?: InscripcionDetalle;
     error?: string;
   };

@@ -1,0 +1,42 @@
+/* Animaciones suaves para dropdowns */
+#dropdown-user,
+#dropdown-historial {
+  transition: opacity 200ms ease-in-out, transform 200ms ease-in-out;
+}
+
+/* Scrollbar personalizado para el historial */
+#dropdown-historial .max-h-96::-webkit-scrollbar {
+  width: 6px;
+}
+
+#dropdown-historial .max-h-96::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+
+#dropdown-historial .max-h-96::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 3px;
+}
+
+#dropdown-historial .max-h-96::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Efecto hover mejorado para botones */
+button {
+  transition: all 200ms ease-in-out;
+}
+
+/* Badge de notificación animado */
+@keyframes pulse-soft {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+.animate-pulse-soft {
+  animation: pulse-soft 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}

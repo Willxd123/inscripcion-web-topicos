@@ -1,3 +1,4 @@
+import { ngrokInterceptor } from './http.interceptor';
 import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { routes } from './app.routes';
@@ -16,7 +17,8 @@ export const appConfig: ApplicationConfig = {
     provideClientHydration(),
     provideHttpClient(
       withFetch(), //global
-      withInterceptors([authInterceptor])
+      withInterceptors([authInterceptor]),
+      withInterceptors([ngrokInterceptor])
     ),
     ApiService,
     {

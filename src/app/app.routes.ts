@@ -6,6 +6,7 @@ import { AuthGuard } from './auth/guards/auth.guard';
 import { LayoutsComponent } from './layouts/layouts.component';
 import { MateriasComponent } from './pages/materias/materias.component';
 import { InscripcionComponent } from './pages/inscripcion/inscripcion.component';
+import { EstadoInscripcionComponent } from './pages/inscripcion/estado/estado-inscripcion.component';
 
 export const routes: Routes = [
   {
@@ -35,6 +36,10 @@ export const routes: Routes = [
       {
         path: 'inscripcion',
         component: InscripcionComponent,
+      },
+      {
+        path: 'inscripcion/estado/:uuid',
+        component: EstadoInscripcionComponent,
       },
       
       

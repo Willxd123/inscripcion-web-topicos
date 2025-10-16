@@ -12,24 +12,24 @@ import { AuthService } from '../../services/auth.service';
 
 })
 export class LoginComponent {
-  correo: string = '';
-  clave: string = '';
+  registro: string = '';
+  codigo: string = '';
   errorMessage: string = '';
 
   constructor(private authService: AuthService, private router: Router) { }
 
- /*  onLogin(): void {
-    if (!this.correo || !this.clave) {
-      this.errorMessage = 'Por favor, ingrese su correo y contraseña';
+  /* onLogin(): void {
+    if (!this.registro || !this.codigo) {
+      this.errorMessage = 'Por favor, ingrese su registro y contraseña';
       return;
     }
 
-    this.authService.login(this.correo, this.clave).subscribe({
+    this.authService.login(this.registro, this.codigo).subscribe({
       next: () => {
-        this.router.navigate(['/inicio']);
+        this.router.navigate(['/materias']);
       },
       error: () => {
-        this.errorMessage = 'Correo o clave incorrectos';
+        this.errorMessage = 'registro o codigo incorrectos';
       },
     });
   } */

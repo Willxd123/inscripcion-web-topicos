@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-
 import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 
@@ -9,7 +8,6 @@ import { AuthService } from '../../services/auth.service';
   standalone: true,
   imports: [FormsModule, RouterModule],
   templateUrl: './login.component.html',
-
 })
 export class LoginComponent {
   registro: string = '';
@@ -18,7 +16,7 @@ export class LoginComponent {
 
   constructor(private authService: AuthService, private router: Router) { }
 
-  /* onLogin(): void {
+  onLogin(): void {
     if (!this.registro || !this.codigo) {
       this.errorMessage = 'Por favor, ingrese su registro y contraseña';
       return;
@@ -32,8 +30,10 @@ export class LoginComponent {
         this.errorMessage = 'registro o codigo incorrectos';
       },
     });
-  } */
-  onLogin(): void {
-    this.router.navigate(['/materias']);
   }
+  
+  // SOLO PARA DESARROLLO - comentar en producción
+  /* onLogin(): void {
+    this.router.navigate(['/perfil']);
+  } */
 }

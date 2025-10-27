@@ -12,6 +12,7 @@ export class GruposService {
   private readonly http = inject(HttpClient);
   //private readonly API_URL = 'http://localhost:80/api/grupos';
   private baseUrl = environment.apiUrl;
+
   obtenerTodosGrupos(): Observable<Grupo[]> {
     return this.http.get<Grupo[]>(`${this.baseUrl}/grupos/grupo`);
   }

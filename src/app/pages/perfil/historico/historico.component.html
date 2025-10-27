@@ -1,0 +1,80 @@
+<div class="min-h-screen bg-gray-100 p-6">
+    <div class="max-w-7xl mx-auto bg-white rounded-lg shadow-md">
+      <div class="p-6 border-b border-gray-200">
+        <h1 class="text-3xl font-bold text-slate-800">Historial Académico</h1>
+        <p class="text-slate-600 mt-1">Tu registro de todas las materias cursadas.</p>
+      </div>
+  
+      <!-- Contenedor de la tabla -->
+      <div class="p-6">
+        
+        <!-- Estado de Carga -->
+        @if (cargando()) {
+          <div class="flex justify-center items-center h-64">
+            <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+            <p class="ml-4 text-slate-600">Cargando historial...</p>
+          </div>
+        } 
+        
+        <!-- Estado de Error -->
+        @else if (error()) {
+          <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+            <strong class="font-bold">Error:</strong>
+            <span class="block sm:inline">{{ error() }}</span>
+            <button (click)="cargarHistorial()" class="mt-2 text-red-700 font-bold">Reintentar</button>
+          </div>
+        } 
+        
+        <!-- Datos Cargados (Tabla) -->
+        @else if (historial().length > 0) {
+          
+         
+  
+          <div class="overflow-x-auto">
+            <table class="min-w-full divide-y divide-gray-200">
+              <thead class="bg-gray-50">
+                <tr>
+                  <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Gestión</th>
+                  <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Sigla</th>
+                  <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Materia</th>
+                  <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nota</th>
+                  <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Créditos</th>
+                  <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Estado</th>
+                </tr>
+              </thead>
+              <tbody class="bg-white divide-y divide-gray-200">
+                @for (item of historial(); track item.id) {
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">  {{ item.gestionNombre }} </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900"> {{ item.materiaSigla }}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900"> {{ item.materiaNombre }} </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium" [class.text-green-600]="+item.nota >= 51" [class.text-red-600]="+item.nota < 51 && item.nota !== null">{{ item.nota}}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ item.creditos }}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm">
+                      @switch (obtenerEstado(item.nota)) {
+                        @case ('Aprobado') {
+                          <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Aprobado</span>
+                        }
+                        @case ('Reprobado') {
+                          <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">Reprobado</span>
+                        }
+                        @case ('Cursando') {
+                          <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">Cursando</span>
+                        }
+                      }
+                    </td>
+                  </tr>
+                }
+              </tbody>
+            </table>
+          </div>
+        } 
+        
+        <!-- Estado Vacío -->
+        @else {
+          <p class="text-center text-slate-500 py-12">No se encontraron registros en tu historial académico.</p>
+        }
+      </div>
+    </div>
+  </div>
+  

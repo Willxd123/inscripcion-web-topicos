@@ -7,12 +7,15 @@ import {
   InscripcionResponse,
   EstadoInscripcion,
 } from './inscripcion.interface';
+import { AuthService } from '../../auth/services/auth.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class InscripcionService {
   private readonly http = inject(HttpClient);
+    
+    
 
   private baseUrl = environment.apiUrl;
   crearInscripcion(datos: InscripcionRequest): Observable<InscripcionResponse> {

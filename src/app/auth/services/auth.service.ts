@@ -16,6 +16,7 @@ interface LoginResponse {
 export class AuthService {
   
   tokenKey = 'authToken';
+  /* apiperfil = 'http://localhost:3002/api' */
   private baseUrl = environment.apiUrl;
   constructor(private http: HttpClient, private router: Router) {}
 

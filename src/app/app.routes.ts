@@ -1,3 +1,4 @@
+import { DashComponent } from './pages/dash/dash.component';
 import { Routes } from '@angular/router';
 import { LoginComponent } from './auth/components/login/login.component';
 import { AuthGuard } from './auth/guards/auth.guard';
@@ -16,18 +17,19 @@ export const routes: Routes = [
     redirectTo: '/login',
     pathMatch: 'full',
   },
-
-  // Ruta de login (sin layout ni guard)
+ 
   {
     path: 'login',
     component: LoginComponent,
   },
+  
 
+  
   // Rutas protegidas con layout
   {
     path: '',
     component: LayoutsComponent,
-    //canActivate: [AuthGuard], // Descomenta esto cuando tengas listo el AuthGuard
+    canActivate: [AuthGuard], 
     children: [
       // Materias - página principal después del login
       {

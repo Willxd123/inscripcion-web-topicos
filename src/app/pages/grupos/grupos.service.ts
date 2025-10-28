@@ -18,7 +18,7 @@ export class GruposService {
   }
 
   obtenerGruposPorMateria(materiaId: number): Observable<Grupo[]> {
-    return this.http.get<Grupo[]>(`${this.baseUrl}/grupos/grupo/materia/${materiaId}`);
+    return this.http.get<Grupo[]>(`${this.baseUrl}/inscripciones/grupos/materia/${materiaId}`);
   }
 
   obtenerGrupoPorId(id: number): Observable<Grupo> {

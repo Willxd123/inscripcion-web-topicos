@@ -9,74 +9,55 @@ import { InscripcionComponent } from './pages/inscripcion/inscripcion.component'
 import { EstadoInscripcionComponent } from './pages/inscripcion/estado/estado-inscripcion.component';
 import { PerfilComponent } from './pages/perfil/perfil.component';
 import { HistoricoComponent } from './pages/perfil/historico/historico.component';
+import { LoginGuard } from './auth/guards/login.guard';
+
 
 export const routes: Routes = [
-  // Ruta raíz - redirige al login
   {
     path: '',
-    redirectTo: '/login',
+    redirectTo: '/dash', 
     pathMatch: 'full',
   },
- 
   {
     path: 'login',
     component: LoginComponent,
-  },
-  
-
-  
-  // Rutas protegidas con layout
+    canActivate: [LoginGuard] 
+    },
   {
     path: '',
     component: LayoutsComponent,
     canActivate: [AuthGuard], 
     children: [
-      // Materias - página principal después del login
+      {
+        path: 'dash',
+        component: DashComponent,
+      },
       {
         path: 'materias',
         component: MateriasComponent,
       },
-
-      // Grupos
       {
         path: 'grupos',
         component: GruposComponent,
       },
-
-      // Inscripción
       {
         path: 'inscripcion',
         component: InscripcionComponent,
       },
-
-      // Estado de inscripción con parámetro UUID
       {
         path: 'inscripcion/estado/:uuid',
         component: EstadoInscripcionComponent,
       },
-
-      // Perfil del usuario
       {
         path: 'perfil',
         component: PerfilComponent,
       },
-
-      // Histórico académico
       {
         path: 'historico',
         component: HistoricoComponent,
       },
-
-      // Ruta por defecto dentro del layout protegido
-      {
-        path: '',
-        redirectTo: '/materias',
-        pathMatch: 'full',
-      },
     ],
   },
-
-  // Ruta wildcard - cualquier ruta no encontrada va al login
   {
     path: '**',
     redirectTo: '/login',

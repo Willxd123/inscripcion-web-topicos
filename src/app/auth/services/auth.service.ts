@@ -14,7 +14,6 @@ interface LoginResponse {
   providedIn: 'root',
 })
 export class AuthService {
-  
   tokenKey = 'authToken';
   /* apiperfil = 'http://localhost:3002/api' */
   private baseUrl = environment.apiUrl;
@@ -22,7 +21,10 @@ export class AuthService {
 
   login(registro: string, codigo: string): Observable<LoginResponse> {
     return this.http
-      .post<LoginResponse>(`${this.baseUrl}/usuarios/auth/login`, { registro, codigo })
+      .post<LoginResponse>(`${this.baseUrl}/usuarios/auth/login`, {
+        registro,
+        codigo,
+      })
       .pipe(
         tap((response) => {
           if (response.token) {
@@ -43,7 +45,7 @@ export class AuthService {
   getUsuarioId(): number | null {
     const token = this.getToken();
     if (!token) return null;
-  
+
     try {
       const payload = JSON.parse(atob(token.split('.')[1]));
       return payload?.id || null;
@@ -67,5 +69,8 @@ export class AuthService {
     console.log('🔓 Logout ejecutado');
     localStorage.removeItem(this.tokenKey);
     this.router.navigate(['/']);
+  }
+  isLoggedIn(): boolean {
+    return this.isAuthenticated();
   }
 }

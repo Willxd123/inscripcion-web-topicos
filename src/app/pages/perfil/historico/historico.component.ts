@@ -28,8 +28,7 @@ export class HistoricoComponent implements OnInit {
     
     this.historicoService.obtenerHistorial().subscribe({
       next: (data) => {
-        // TODO: Los datos de la API son incompletos (solo IDs).
-        // Se necesita "enriquecerlos" llamando a las APIs de grupos y materias.
+
         this.historial.set(data);
         this.cargando.set(false);
       },
@@ -41,7 +40,7 @@ export class HistoricoComponent implements OnInit {
     });
   }
 
-  // Función para determinar el estado de la materia
+
   obtenerEstado(nota: string | number | null): string {
     if (nota === null) {
       return 'Cursando';
